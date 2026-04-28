@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>にゃんこ・ディフェンス・プロ | Nyanko Defense Pro</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&family=M+PLUS+Rounded+1c:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="game-container">
+        <!-- Background Elements -->
+        <div class="bg-clouds"></div>
+        <div class="bg-gradient"></div>
+
+        <!-- UI Layer: HUD -->
+        <div id="ui-hud">
+            <div class="hud-top-left">
+                <div id="combo-container">
+                    <span id="combo-count">0</span>
+                    <span id="combo-label">COMBO</span>
+                </div>
+            </div>
+            <div class="hud-top-right">
+                <div class="score-box">
+                    <div class="score-label">SCORE</div>
+                    <div id="current-score">000000</div>
+                </div>
+                <div class="highscore-box">
+                    <div class="score-label">HIGH SCORE</div>
+                    <div id="high-score">000000</div>
+                </div>
+            </div>
+            <div class="hud-bottom">
+                <div id="health-bar">
+                    <!-- Fish icons will be injected here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Game Canvas Layer -->
+        <div id="game-view">
+            <div id="hit-areas">
+                <div id="hit-left" class="hit-zone"></div>
+                <div id="hit-right" class="hit-zone"></div>
+            </div>
+            <canvas id="game-canvas"></canvas>
+            <div id="cat-container">
+                <!-- SVG Cat will be injected here -->
+            </div>
+        </div>
+
+        <!-- Overlays -->
+        <div id="overlay-start" class="overlay active">
+            <div class="glass-panel menu-panel">
+                <h1>にゃんこ・ディフェンス・プロ</h1>
+                <p>ふわふわ猫パンチで、飛んでくるおもちゃを弾き飛ばそう！</p>
+                <div class="controls-guide">
+                    <div class="guide-item">
+                        <span class="key">A</span> / <span class="key">←</span> / <span class="key">左クリック</span>
+                        <p>左をパンチ</p>
+                    </div>
+                    <div class="guide-item">
+                        <span class="key">D</span> / <span class="key">→</span> / <span class="key">右クリック</span>
+                        <p>右をパンチ</p>
+                    </div>
+                </div>
+                <div class="menu-buttons">
+                    <button id="btn-start" class="btn-primary">ゲーム開始</button>
+                    <button id="btn-ranking" class="btn-secondary">ランキング</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Title Ranking Overlay -->
+        <div id="overlay-title-ranking" class="overlay">
+            <div class="glass-panel menu-panel">
+                <h3>🏆 歴代ランキング</h3>
+                <ul id="start-ranking-list">
+                    <!-- Ranking items will be injected here -->
+                </ul>
+                <button id="btn-close-ranking" class="btn-secondary">閉じる</button>
+            </div>
+        </div>
+
+        <!-- Countdown Overlay -->
+        <div id="overlay-countdown" class="overlay">
+            <div id="countdown-number">3</div>
+        </div>
+
+        <div id="overlay-pause" class="overlay">
+            <div class="glass-panel menu-panel">
+                <h2>一時停止中</h2>
+                <button id="btn-resume" class="btn-primary">再開</button>
+                <button id="btn-restart-pause" class="btn-secondary">最初から</button>
+            </div>
+        </div>
+
+        <div id="overlay-gameover" class="overlay">
+            <div class="glass-panel menu-panel">
+                <h2>おつかれさまでした！</h2>
+                <div class="final-stats">
+                    <div class="stat">
+                        <span>最終スコア:</span>
+                        <span id="final-score">0</span>
+                    </div>
+                    <div class="stat">
+                        <span>最大コンボ:</span>
+                        <span id="max-combo">0</span>
+                    </div>
+                </div>
+                <div class="ranking-section">
+                    <h3>🏆 ローカルランキング</h3>
+                    <ul id="ranking-list">
+                        <!-- Ranking items will be injected here -->
+                    </ul>
+                </div>
+                <button id="btn-restart" class="btn-primary">もういちど遊ぶ</button>
+            </div>
+        </div>
+
+        <!-- Feedback Overlay (Perfect/Good/Miss) -->
+        <div id="hit-feedback"></div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets.js"></script>
+    <script src="game.js"></script>
+</body>
+</html>
