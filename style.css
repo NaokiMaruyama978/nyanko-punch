@@ -434,3 +434,38 @@ p {
 #start-ranking-list .ranking-item {
     color: var(--text-dark);
 }
+
+.joimode-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 8rem;
+    font-weight: 900;
+    color: #fff;
+    text-shadow: 5px 5px 0 #ff6b6b, -5px -5px 0 #8fd3ff;
+    z-index: 200;
+    pointer-events: none;
+    opacity: 0;
+    letter-spacing: 20px;
+}
+
+.joimode-text.active {
+    animation: joiPop 2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@keyframes joiPop {
+    0% { transform: translate(-50%, -50%) scale(0.5); opacity: 0; filter: hue-rotate(0deg); }
+    20% { transform: translate(-50%, -50%) scale(1.2); opacity: 1; }
+    80% { transform: translate(-50%, -50%) scale(1); opacity: 1; filter: hue-rotate(360deg); }
+    100% { transform: translate(-50%, -50%) scale(2); opacity: 0; }
+}
+
+.joi-bg {
+    animation: rainbowBg 5s linear infinite;
+}
+
+@keyframes rainbowBg {
+    0% { filter: hue-rotate(0deg); }
+    100% { filter: hue-rotate(360deg); }
+}

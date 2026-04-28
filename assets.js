@@ -24,6 +24,35 @@ const Assets = {
         </svg>
     `,
 
+    joiPenguin: `
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <!-- Body -->
+            <ellipse cx="50" cy="60" rx="40" ry="38" fill="#1a2a3a" />
+            <!-- White Belly -->
+            <ellipse cx="50" cy="68" rx="30" ry="28" fill="#fff" />
+            <!-- Crown -->
+            <path d="M35 25 L40 10 L50 20 L60 10 L65 25 Z" fill="#ff6b6b" stroke="#fff" stroke-width="1" />
+            <!-- Wings -->
+            <path d="M10 60 Q-5 50 15 75" fill="#1a2a3a" stroke="#1a2a3a" stroke-width="2" stroke-linecap="round" />
+            <path d="M90 60 Q105 50 85 75" fill="#1a2a3a" stroke="#1a2a3a" stroke-width="2" stroke-linecap="round" />
+            <!-- Eyes (Big and Cute) -->
+            <circle cx="35" cy="50" r="6" fill="#fff" />
+            <circle cx="65" cy="50" r="6" fill="#fff" />
+            <circle cx="35" cy="50" r="3" fill="#000" />
+            <circle cx="65" cy="50" r="3" fill="#000" />
+            <circle cx="33" cy="48" r="1" fill="#fff" />
+            <circle cx="63" cy="48" r="1" fill="#fff" />
+            <!-- Blushes -->
+            <circle cx="28" cy="60" r="4" fill="#ffc0cb" opacity="0.6" />
+            <circle cx="72" cy="60" r="4" fill="#ffc0cb" opacity="0.6" />
+            <!-- Beak -->
+            <path d="M45 58 Q50 65 55 58" fill="#ffa500" stroke="#cc8400" stroke-width="1" />
+            <!-- Paws (Flippers) -->
+            <circle id="paw-left" cx="20" cy="80" r="10" fill="#1a2a3a" />
+            <circle id="paw-right" cx="80" cy="80" r="10" fill="#1a2a3a" />
+        </svg>
+    `,
+
     toyYarn: `
         <svg viewBox="0 0 100 100" width="100" height="100" xmlns="http://www.w3.org/2000/svg">
             <circle cx="50" cy="50" r="40" fill="#ff8fb1" />
@@ -68,6 +97,14 @@ const Assets = {
             <path d="M10 50 Q30 20 70 40 T90 50 T70 60 T30 80 T10 50" fill="#8fd3ff" stroke="#fff" stroke-width="2" />
             <circle cx="30" cy="45" r="3" fill="#fff" />
             <path d="M70 40 L85 30 L85 70 L70 60 Z" fill="#8fd3ff" stroke="#fff" stroke-width="2" />
+        </svg>
+    `,
+
+    toyFish: `
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <path d="M10 50 Q30 20 70 40 T90 50 T70 60 T30 80 T10 50" fill="#ff8fb1" stroke="#fff" stroke-width="2" />
+            <circle cx="30" cy="45" r="3" fill="#fff" />
+            <path d="M70 40 L85 30 L85 70 L70 60 Z" fill="#ff8fb1" stroke="#fff" stroke-width="2" />
         </svg>
     `,
 

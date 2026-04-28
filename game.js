@@ -70,6 +70,10 @@ class Game {
         // Feedback & Safety
         this.damageFlash = 0;
         this.invincibility = 0;
+        
+        // Hidden Command
+        this.joiMode = false;
+        this.keyBuffer = '';
 
         // Initialization
         this.resize();
@@ -91,7 +95,7 @@ class Game {
 
     preloadAssets() {
         this.images = {};
-        const assetKeys = ['toyYarn', 'toyMouse', 'toyRibbon', 'bossRobotDog'];
+        const assetKeys = ['toyYarn', 'toyMouse', 'toyRibbon', 'bossRobotDog', 'toyFish', 'joiPenguin'];
         assetKeys.forEach(key => {
             const svgData = Assets.getAsset(key);
             const svgBlob = new Blob([svgData], {type: 'image/svg+xml;charset=utf-8'});
@@ -113,6 +117,14 @@ class Game {
             if (e.key === 'ArrowLeft' || e.key.toLowerCase() === 'a') this.handleInput('left');
             if (e.key === 'ArrowRight' || e.key.toLowerCase() === 'd') this.handleInput('right');
             if (e.key === 'Escape') this.pause();
+
+            // Hidden Command Logic
+            this.keyBuffer += e.key.toLowerCase();
+            this.keyBuffer = this.keyBuffer.slice(-10);
+            if (this.keyBuffer.endsWith('joi')) {
+                this.toggleJoiMode();
+                this.keyBuffer = '';
+            }
         });
 
         window.addEventListener('keyup', (e) => {
@@ -144,10 +156,30 @@ class Game {
     }
 
     initCat() {
-        this.catContainer.innerHTML = Assets.playerCat;
+        this.catContainer.innerHTML = this.joiMode ? Assets.joiPenguin : Assets.playerCat;
         this.catSVG = this.catContainer.querySelector('svg');
         this.catLeftPaw = this.catContainer.querySelector('#paw-left');
         this.catRightPaw = this.catContainer.querySelector('#paw-right');
+    }
+
+    toggleJoiMode() {
+        this.joiMode = !this.joiMode;
+        
+        const overlay = document.getElementById('overlay-joimode');
+        overlay.innerText = this.joiMode ? 'JOIMODE' : 'DEFAULT MODE';
+        overlay.classList.remove('active');
+        void overlay.offsetWidth;
+        overlay.classList.add('active');
+        
+        const container = document.getElementById('game-container');
+        if (this.joiMode) container.classList.add('joi-bg');
+        else container.classList.remove('joi-bg');
+
+        // Restart with countdown in the new mode
+        setTimeout(() => {
+            this.initCat();
+            this.start();
+        }, 500);
     }
 
     start() {
@@ -604,7 +636,13 @@ class Target {
         let assetKey = 'toyYarn';
         if (type === 'hold') assetKey = 'toyRibbon';
         else if (type === 'boss') assetKey = 'bossRobotDog';
-        else assetKey = Math.random() > 0.5 ? 'toyYarn' : 'toyMouse';
+        else {
+            if (window.game && window.game.joiMode) {
+                assetKey = 'toyFish';
+            } else {
+                assetKey = Math.random() > 0.5 ? 'toyYarn' : 'toyMouse';
+            }
+        }
 
         this.img = imageRepo[assetKey];
     }
