@@ -420,8 +420,8 @@ class Game {
                         this.targets.push(new Target(this.LANE_RIGHT, this.canvas, this.gameSpeed, this.TYPES.NORMAL, this.images));
                     } else {
                         const target = new Target(side, this.canvas, this.gameSpeed, type, this.images);
-                        // 15% chance to be a 'stop-and-go' target
-                        if (Math.random() > 0.85) target.stopDuration = 30 + Math.random() * 30;
+                        // 5% chance to be a 'stop-and-go' target (3s pause)
+                        if (Math.random() > 0.95) target.stopDuration = 180;
                         this.targets.push(target);
                     }
                 }, i * burstDelay);
@@ -688,6 +688,20 @@ class Target {
         if (this.img.complete) {
             ctx.drawImage(this.img, -size/2, -size/2, size, size);
         }
+
+        // Draw timer for stopped targets
+        if (this.stopped && this.stopDuration > 0) {
+            const seconds = Math.ceil(this.stopDuration / 60);
+            ctx.rotate(-this.rotation); // Counter-rotate for text readability
+            ctx.fillStyle = '#fff';
+            ctx.font = 'bold 24px "Outfit", sans-serif';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'bottom';
+            ctx.shadowBlur = 4;
+            ctx.shadowColor = 'rgba(0,0,0,0.5)';
+            ctx.fillText(seconds + 's', 0, -size/2 - 5);
+        }
+
         ctx.restore();
     }
 }
