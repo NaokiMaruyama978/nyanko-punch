@@ -166,7 +166,7 @@ class Game {
         this.joiMode = !this.joiMode;
         
         const overlay = document.getElementById('overlay-joimode');
-        overlay.innerText = this.joiMode ? 'JOIMODE' : 'DEFAULT MODE';
+        overlay.innerText = this.joiMode ? 'JOIMODE' : 'NYANKO MODE';
         overlay.classList.remove('active');
         void overlay.offsetWidth;
         overlay.classList.add('active');
