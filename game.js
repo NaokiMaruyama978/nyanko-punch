@@ -539,10 +539,27 @@ class Game {
                 const passedRight = (t.lane === this.LANE_RIGHT && t.x < centerX + 50);
                 
                 if (passedLeft || passedRight) {
-                    t.missed = true;
-                    if (this.invincibility <= 0) {
-                        this.takeDamage();
-                        this.showFeedback('MISS...', 'miss');
+                    if (t.type === this.TYPES.HOLD) {
+                        const laneKey = t.lane === this.LANE_LEFT ? 'left' : 'right';
+                        if (this.keys[laneKey]) {
+                            // Successfully held until the end
+                            t.hit = true;
+                            t.vx = t.lane === this.LANE_LEFT ? -10 : 10;
+                            t.vy = -15;
+                            this.showFeedback('PERFECT!', 'perfect');
+                        } else {
+                            t.missed = true;
+                            if (this.invincibility <= 0) {
+                                this.takeDamage();
+                                this.showFeedback('MISS...', 'miss');
+                            }
+                        }
+                    } else {
+                        t.missed = true;
+                        if (this.invincibility <= 0) {
+                            this.takeDamage();
+                            this.showFeedback('MISS...', 'miss');
+                        }
                     }
                 }
             }
